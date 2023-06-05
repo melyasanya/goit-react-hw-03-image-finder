@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class SearchBar extends Component {
   state = {
@@ -7,13 +8,14 @@ export class SearchBar extends Component {
   handleInput = e => {
     this.setState({ input: e.target.value });
   };
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.handleSubmit(this.state.input);
+  };
   render() {
     return (
       <header className="Searchbar">
-        <form
-          className="SearchForm"
-          onSubmit={e => this.props.handleSubmit(e, this.state.input)}
-        >
+        <form className="SearchForm" onSubmit={this.onSubmit}>
           <button type="submit" className="SearchForm-button">
             <span className="button-label">Search</span>
           </button>
@@ -32,3 +34,7 @@ export class SearchBar extends Component {
     );
   }
 }
+
+SearchBar.propTypes = {
+  handleSubmit: PropTypes.func,
+};

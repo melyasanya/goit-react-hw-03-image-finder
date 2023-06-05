@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import { Component } from 'react';
 
 export class Modal extends Component {
@@ -28,3 +30,8 @@ export class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  url: PropTypes.string,
+  closeModal: PropTypes.func,
+};
